@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Samadhi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#e0e7ff',
+                            DEFAULT: '#6366f1',
+                            dark: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="relative min-h-screen text-gray-800 font-sans bg-stone-50">
+
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-200/50 blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-teal-200/40 blur-[120px]"></div>
+    </div>
+
+    <!-- ⚠️ Panel sin login todavía: cualquiera con el link puede editar el catálogo.
+         Sirve para probar que la integración funciona; el acceso lo sumamos después. -->
+
+    <nav class="w-full bg-white/40 backdrop-blur-md border-b border-white/40 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-semibold tracking-wide text-gray-800">
+                Samadhi<span class="text-teal-600">.</span> <span class="text-sm text-gray-500 font-normal">/ admin</span>
+            </a>
+            <a href="index.html" class="text-sm text-teal-600 hover:text-teal-800 font-medium">Ver tienda &rarr;</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- Columna izquierda: formulario -->
+        <section class="bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl p-6 h-fit">
+            <div class="flex items-center justify-between mb-6">
+                <h1 id="titulo-form" class="text-xl font-bold text-gray-900">Nuevo producto</h1>
+                <button id="btn-cancelar-edicion" type="button" class="hidden text-sm text-gray-500 hover:text-red-500 font-medium">
+                    Cancelar edición
+                </button>
+            </div>
+
+            <form id="form-producto" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nombre *</label>
+                    <input id="input-nombre" type="text" required
+                        class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+                    <textarea id="input-descripcion" rows="3"
+                        class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Precio *</label>
+                        <input id="input-precio" type="number" step="0.01" min="0" required
+                            class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+                        <select id="input-categoria"
+                            class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
+                            <option value="sahumerios">Sahumerios</option>
+                            <option value="cascadas">Cascadas</option>
+                            <option value="esencias">Esencias</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">URL de imagen *</label>
+                    <input id="input-imagen" type="url" required placeholder="https://res.cloudinary.com/..."
+                        class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
+                    <img id="preview-imagen" class="hidden mt-3 h-32 w-32 object-cover rounded-xl border border-white/60" alt="Vista previa">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <label class="flex items-center gap-2 text-sm text-gray-700">
+                        <input id="input-nuevo" type="checkbox" class="h-4 w-4 rounded text-teal-600">
+                        Marcar como "Nuevo"
+                    </label>
+                    <label class="flex items-center gap-2 text-sm text-gray-700">
+                        <input id="input-activo" type="checkbox" checked class="h-4 w-4 rounded text-teal-600">
+                        Visible en la tienda
+                    </label>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Orden (opcional)</label>
+                    <input id="input-orden" type="number" step="1" placeholder="Dejalo vacío para orden alfabético"
+                        class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
+                </div>
+
+                <button id="btn-guardar" type="submit"
+                    class="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3.5 rounded-2xl shadow-lg transition-all duration-300 disabled:opacity-50">
+                    Agregar producto
+                </button>
+            </form>
+        </section>
+
+        <!-- Columna derecha: listado -->
+        <section class="bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl p-6 h-fit">
+            <h2 class="text-xl font-bold text-gray-900 mb-6">Productos cargados</h2>
+            <div id="lista-productos" class="space-y-3 max-h-[70vh] overflow-y-auto">
+                <p class="text-gray-500 text-sm text-center py-10">Cargando...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

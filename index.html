@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samadhi | Villa Ángela</title>
+    <!-- Tailwind CSS vía CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#e0e7ff',
+                            DEFAULT: '#6366f1',
+                            dark: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="relative min-h-screen text-gray-800 font-sans overflow-x-hidden bg-stone-50">
+
+    <!-- Fondo Abstracto para resaltar el Glassmorphism -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-200/50 blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-teal-200/40 blur-[120px]"></div>
+        <div class="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-amber-100/60 blur-[80px]"></div>
+    </div>
+
+    <!-- Navegación Glassmorphism -->
+    <nav class="fixed w-full z-50 top-0 bg-white/30 backdrop-blur-md border-b border-white/40 shadow-sm transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" onclick="window.limpiarBusqueda && window.limpiarBusqueda()" class="text-2xl font-semibold tracking-wide text-gray-800">
+                    Samadhi<span class="text-teal-600">.</span>
+                </a>
+                
+                <!-- Enlaces -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-teal-700 transition">Inicio</a>
+                    <a href="#destacados" class="text-gray-700 hover:text-teal-700 transition">Productos</a>
+                </div>
+
+                <!-- Carrito -->
+                <button class="btn-abrir-carrito relative p-2 bg-white/40 hover:bg-white/60 rounded-full backdrop-blur-sm border border-white/50 transition shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <!-- Badge del carrito -->
+                    <span id="cart-count" class="absolute top-0 right-0 bg-teal-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center translate-x-1 -translate-y-1">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-900 drop-shadow-sm">
+                Transforma tu espacio,<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">eleva tu energía</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                Descubrí nuestros productos.
+            </p>
+            <a href="#destacados" class="inline-block bg-white/40 backdrop-blur-md border border-white/60 shadow-lg hover:bg-white/60 hover:shadow-xl transition-all duration-300 text-gray-800 font-semibold px-8 py-4 rounded-2xl text-lg">
+                Ver productos
+            </a>
+        </div>
+
+        <!-- Nuestros Productos -->
+        <section id="destacados">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nuestros productos</h2>
+
+                <!-- Buscador -->
+                <div class="relative max-w-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input
+                        type="text"
+                        id="buscador-productos"
+                        placeholder="Buscar productos..."
+                        autocomplete="off"
+                        class="w-full bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl pl-11 pr-4 py-3 text-gray-800 placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50 transition"
+                    >
+                </div>
+            </div>
+
+            <!-- Grid de Productos (se completa dinámicamente desde Firestore, ver productos.js) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="contenedor-productos">
+                <!-- Acá se inyectan los skeletons y luego las tarjetas reales -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Simple -->
+    <footer class="mt-20 border-t border-gray-200/30 bg-white/10 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center text-gray-600 text-sm">
+            <p>&copy; 2026 Samadhi. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica de carrito (global, no es módulo) -->
+    <script src="carrito.js"></script>
+    <!-- Catálogo dinámico desde Firestore (módulo ES) -->
+    <script type="module" src="productos.js"></script>
+    <!-- Vida general del sitio: nav al scrollear, animaciones -->
+    <script src="script.js"></script>
+</body>
+</html>
