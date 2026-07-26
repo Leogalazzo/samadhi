@@ -63,9 +63,70 @@ function activarReveal() {
 window.activarReveal = activarReveal;
 
 // ==========================================================
+// 3. MODAL DE CONTACTO (Ubicación, WhatsApp, Instagram, horarios)
+// ==========================================================
+function actualizarLinkWhatsappContacto() {
+    const link = document.getElementById('contacto-whatsapp-link');
+    if (!link) return;
+    const numero = window.WHATSAPP_NUMERO;
+    const mensaje = encodeURIComponent('¡Hola! Quiero hacer una consulta.');
+    link.href = numero ? `https://wa.me/${numero}?text=${mensaje}` : '#';
+}
+
+function abrirModalContacto() {
+    const overlay = document.getElementById('contacto-overlay');
+    const modal = document.getElementById('contacto-modal');
+    const panel = document.getElementById('contacto-modal-panel');
+    if (!overlay || !modal || !panel) return;
+
+    actualizarLinkWhatsappContacto();
+
+    overlay.classList.remove('hidden');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    requestAnimationFrame(() => {
+        panel.classList.remove('opacity-0', 'scale-95');
+        panel.classList.add('opacity-100', 'scale-100');
+    });
+
+    document.body.classList.add('overflow-hidden');
+}
+
+function cerrarModalContacto() {
+    const overlay = document.getElementById('contacto-overlay');
+    const modal = document.getElementById('contacto-modal');
+    const panel = document.getElementById('contacto-modal-panel');
+    if (!overlay || !modal || !panel) return;
+
+    panel.classList.remove('opacity-100', 'scale-100');
+    panel.classList.add('opacity-0', 'scale-95');
+    overlay.classList.add('hidden');
+
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }, 200);
+
+    document.body.classList.remove('overflow-hidden');
+}
+
+function inicializarModalContacto() {
+    const btnAbrir = document.getElementById('btn-abrir-contacto');
+    if (btnAbrir) {
+        btnAbrir.addEventListener('click', abrirModalContacto);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') cerrarModalContacto();
+    });
+}
+
+// ==========================================================
 // INIT
 // ==========================================================
 document.addEventListener('DOMContentLoaded', () => {
     inicializarNavScroll();
     activarReveal();
+    inicializarModalContacto();
 });
