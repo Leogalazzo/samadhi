@@ -1,5 +1,5 @@
 // ==========================================================
-// CARRITO.JS - Lógica de carrito para Aromas
+// CARRITO.JS - Lógica de carrito para Samadhi
 // ==========================================================
 
 // ⚠️ CONFIGURACIÓN: reemplazá por el número real de WhatsApp
@@ -78,7 +78,7 @@ function crearDrawerCarrito() {
 
     const overlay = document.createElement('div');
     overlay.id = 'carrito-overlay';
-    overlay.className = 'fixed inset-0 bg-black/40 z-[60] hidden';
+    overlay.className = 'fixed inset-0 bg-[#2B2621]/40 z-[60] hidden';
     overlay.onclick = cerrarCarrito;
 
     const drawer = document.createElement('aside');
@@ -86,13 +86,13 @@ function crearDrawerCarrito() {
     // Ojo: el backdrop-blur NO va acá directo. Se agrega/saca dinámicamente
     // (ver abrirCarrito/cerrarCarrito) porque animar transform + blur al
     // mismo tiempo es carísimo para el navegador y se siente trabado/lento.
-    drawer.className = 'fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white/95 border-l border-white/50 shadow-2xl z-[70] translate-x-full transition-transform duration-300 will-change-transform flex flex-col';
+    drawer.className = 'fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#FAF7F0] border-l border-[#2B2621]/10 shadow-2xl z-[70] translate-x-full transition-transform duration-300 will-change-transform flex flex-col font-["Work_Sans",sans-serif]';
 
     drawer.innerHTML = `
-        <div class="flex items-center justify-between px-6 h-20 border-b border-white/40 shrink-0">
-            <h2 class="text-xl font-bold text-gray-900">Tu Carrito</h2>
-            <button onclick="cerrarCarrito()" class="p-2 hover:bg-white/50 rounded-full transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="flex items-center justify-between px-6 h-20 border-b border-[#2B2621]/10 shrink-0">
+            <h2 class="text-xl font-semibold text-[#2B2621]" style="font-family:'Fraunces', serif;">Tu carrito</h2>
+            <button onclick="cerrarCarrito()" class="p-2 hover:bg-[#2B2621]/5 rounded-full transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#4A4038]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
@@ -100,12 +100,12 @@ function crearDrawerCarrito() {
 
         <div id="carrito-items" class="flex-1 overflow-y-auto px-6 py-4 space-y-4"></div>
 
-        <div id="carrito-footer" class="px-6 py-5 border-t border-white/40 bg-white/40 shrink-0">
+        <div id="carrito-footer" class="px-6 py-5 border-t border-[#2B2621]/10 bg-[#F1EAD9]/50 shrink-0">
             <div class="flex justify-between items-center mb-4">
-                <span class="text-gray-600 font-medium">Total</span>
-                <span id="carrito-total" class="text-2xl font-black text-gray-900">$0</span>
+                <span class="text-[#4A4038] font-medium text-sm">Total</span>
+                <span id="carrito-total" class="text-2xl font-semibold text-[#2B2621]" style="font-family:'IBM Plex Mono', monospace;">$0</span>
             </div>
-            <button onclick="enviarPedidoWhatsApp()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 rounded-2xl shadow-md transition-all duration-300 flex items-center justify-center space-x-2">
+            <button onclick="enviarPedidoWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-4 rounded-full shadow-sm transition-colors duration-300 flex items-center justify-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.393.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"></path>
                 </svg>
@@ -170,11 +170,11 @@ function renderCarrito() {
 
     if (carrito.length === 0) {
         contenedor.innerHTML = `
-            <div class="h-full flex flex-col items-center justify-center text-center text-gray-500 py-16">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            <div class="h-full flex flex-col items-center justify-center text-center text-[#7A6F61] py-16">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-[#D3C3A0] mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
-                <p class="font-medium">Tu carrito está vacío</p>
+                <p class="font-medium text-[#2B2621]">Tu carrito está vacío</p>
                 <p class="text-sm mt-1">Agregá productos para empezar tu pedido.</p>
             </div>
         `;
@@ -185,18 +185,18 @@ function renderCarrito() {
     if (footer) footer.classList.remove('hidden');
 
     contenedor.innerHTML = carrito.map(item => `
-        <div class="flex items-center gap-3 bg-white/50 border border-white/60 rounded-2xl p-3">
+        <div class="flex items-center gap-3 bg-white border border-[#2B2621]/10 rounded-2xl p-3">
             <img src="${item.imagen}" alt="${item.nombre}" class="h-16 w-16 object-cover rounded-xl shrink-0">
             <div class="flex-1 min-w-0">
-                <p class="font-semibold text-gray-800 text-sm truncate">${item.nombre}</p>
-                <p class="text-teal-600 font-bold text-sm">$${formatearPrecio(item.precio)}</p>
+                <p class="font-medium text-[#2B2621] text-sm truncate">${item.nombre}</p>
+                <p class="text-[#A86A4B] font-medium text-sm" style="font-family:'IBM Plex Mono', monospace;">$${formatearPrecio(item.precio)}</p>
                 <div class="flex items-center gap-2 mt-2">
-                    <button onclick="cambiarCantidadCarrito('${item.id}', -1)" class="h-7 w-7 flex items-center justify-center bg-white/70 border border-white/60 rounded-lg text-gray-600 hover:text-teal-600 font-bold transition">-</button>
-                    <span class="text-sm font-semibold w-5 text-center">${item.cantidad}</span>
-                    <button onclick="cambiarCantidadCarrito('${item.id}', 1)" class="h-7 w-7 flex items-center justify-center bg-white/70 border border-white/60 rounded-lg text-gray-600 hover:text-teal-600 font-bold transition">+</button>
+                    <button onclick="cambiarCantidadCarrito('${item.id}', -1)" class="h-7 w-7 flex items-center justify-center bg-[#F1EAD9] border border-[#2B2621]/10 rounded-lg text-[#4A4038] hover:text-[#A86A4B] font-medium transition">-</button>
+                    <span class="text-sm font-medium w-5 text-center">${item.cantidad}</span>
+                    <button onclick="cambiarCantidadCarrito('${item.id}', 1)" class="h-7 w-7 flex items-center justify-center bg-[#F1EAD9] border border-[#2B2621]/10 rounded-lg text-[#4A4038] hover:text-[#A86A4B] font-medium transition">+</button>
                 </div>
             </div>
-            <button onclick="eliminarDelCarrito('${item.id}')" class="p-2 text-gray-400 hover:text-red-500 transition shrink-0">
+            <button onclick="eliminarDelCarrito('${item.id}')" class="p-2 text-[#D3C3A0] hover:text-[#A86A4B] transition shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg>
@@ -215,7 +215,7 @@ function mostrarToast(mensaje) {
     if (!toast) {
         toast = document.createElement('div');
         toast.id = 'aromas-toast';
-        toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-900/90 backdrop-blur-md text-white text-sm font-medium px-5 py-3 rounded-2xl shadow-xl z-[80] opacity-0 pointer-events-none transition-opacity duration-300';
+        toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#2B2621]/95 backdrop-blur-md text-[#FAF7F0] text-sm font-medium px-5 py-3 rounded-full shadow-xl z-[80] opacity-0 pointer-events-none transition-opacity duration-300';
         document.body.appendChild(toast);
     }
     toast.innerText = mensaje;
@@ -230,7 +230,7 @@ function mostrarToast(mensaje) {
 function enviarPedidoWhatsApp() {
     if (carrito.length === 0) return;
 
-    let mensaje = `¡Hola! Quiero hacer este pedido en *Aromas*:%0A%0A`;
+    let mensaje = `¡Hola! Quiero hacer este pedido en *Samadhi*:%0A%0A`;
 
     carrito.forEach(item => {
         mensaje += `• ${item.cantidad}x ${item.nombre} - $${formatearPrecio(item.precio * item.cantidad)}%0A`;
