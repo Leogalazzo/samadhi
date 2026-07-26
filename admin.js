@@ -29,6 +29,35 @@ const sidebarBtns = document.querySelectorAll('.sidebar-btn');
 const panelProductos = document.getElementById('panel-productos');
 const panelCategorias = document.getElementById('panel-categorias');
 
+// ---- Sidebar mobile (drawer off-canvas en < lg) ----
+const adminSidebar = document.getElementById('admin-sidebar');
+const adminSidebarOverlay = document.getElementById('admin-sidebar-overlay');
+const btnAbrirSidebarAdmin = document.getElementById('btn-abrir-sidebar-admin');
+const btnCerrarSidebarAdmin = document.getElementById('btn-cerrar-sidebar-admin');
+
+function abrirSidebarAdmin() {
+    if (!adminSidebar || !adminSidebarOverlay) return;
+    adminSidebar.classList.remove('-translate-x-full');
+    adminSidebar.classList.add('translate-x-0');
+    adminSidebarOverlay.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+}
+
+function cerrarSidebarAdmin() {
+    if (!adminSidebar || !adminSidebarOverlay) return;
+    adminSidebar.classList.add('-translate-x-full');
+    adminSidebar.classList.remove('translate-x-0');
+    adminSidebarOverlay.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+}
+
+btnAbrirSidebarAdmin?.addEventListener('click', abrirSidebarAdmin);
+btnCerrarSidebarAdmin?.addEventListener('click', cerrarSidebarAdmin);
+adminSidebarOverlay?.addEventListener('click', cerrarSidebarAdmin);
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') cerrarSidebarAdmin();
+});
+
 function activarTab(tab) {
     const esProductos = tab === 'productos';
     panelProductos.classList.toggle('hidden', !esProductos);
@@ -37,6 +66,9 @@ function activarTab(tab) {
     sidebarBtns.forEach(btn => {
         btn.classList.toggle('activo', btn.dataset.tab === tab);
     });
+
+    // En mobile el sidebar es un drawer: al elegir una pestaña, se cierra solo.
+    cerrarSidebarAdmin();
 }
 
 sidebarBtns.forEach(btn => {
