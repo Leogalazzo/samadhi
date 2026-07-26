@@ -4,123 +4,283 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Samadhi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            light: '#e0e7ff',
-                            DEFAULT: '#6366f1',
-                            dark: '#4338ca',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="relative min-h-screen text-gray-800 font-sans bg-stone-50">
 
-    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-200/50 blur-[100px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-teal-200/40 blur-[120px]"></div>
-    </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-sand-50:  #FAF7F0;
+            --color-sand-100: #F1EAD9;
+            --color-sand-200: #E4D8BE;
+            --color-sand-300: #D3C3A0;
+            --color-ink-900:  #2B2621;
+            --color-ink-700:  #4A4038;
+            --color-ink-500:  #7A6F61;
+            --color-clay-500: #A86A4B;
+            --color-clay-600: #8F5539;
+            --color-sage-500: #7C8B6F;
+            --color-sage-600: #626F57;
+            --color-brass-400:#C9A24B;
+            --color-brass-500:#B08A3C;
+
+            --font-display: "Fraunces", ui-serif, serif;
+            --font-body: "Work Sans", ui-sans-serif, sans-serif;
+            --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+        }
+    </style>
+    <style>
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+        }
+        ::selection { background: #E4D8BE; color: #2B2621; }
+    </style>
+</head>
+<body class="bg-sand-50 text-ink-900 font-body antialiased">
 
     <!-- ⚠️ Panel sin login todavía: cualquiera con el link puede editar el catálogo.
          Sirve para probar que la integración funciona; el acceso lo sumamos después. -->
 
-    <nav class="w-full bg-white/40 backdrop-blur-md border-b border-white/40 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="index.html" class="text-xl font-semibold tracking-wide text-gray-800">
-                Samadhi<span class="text-teal-600">.</span> <span class="text-sm text-gray-500 font-normal">/ admin</span>
-            </a>
-            <a href="index.html" class="text-sm text-teal-600 hover:text-teal-800 font-medium">Ver tienda &rarr;</a>
-        </div>
-    </nav>
+    <div class="flex min-h-screen">
 
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-        <!-- Columna izquierda: formulario -->
-        <section class="bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl p-6 h-fit">
-            <div class="flex items-center justify-between mb-6">
-                <h1 id="titulo-form" class="text-xl font-bold text-gray-900">Nuevo producto</h1>
-                <button id="btn-cancelar-edicion" type="button" class="hidden text-sm text-gray-500 hover:text-red-500 font-medium">
-                    Cancelar edición
-                </button>
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="fixed inset-y-0 left-0 w-64 bg-sand-100/70 backdrop-blur-md border-r border-ink-900/10 flex flex-col z-30">
+            <div class="h-20 flex items-center px-6 border-b border-ink-900/10 shrink-0">
+                <a href="index.html" class="flex items-center gap-2">
+                    <span class="font-display text-2xl text-ink-900">Samadhi<span class="text-clay-600">.</span></span>
+                </a>
             </div>
+            <span class="px-6 pt-5 pb-2 font-mono text-[10px] uppercase tracking-widest text-ink-500">Panel</span>
 
-            <form id="form-producto" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Nombre *</label>
-                    <input id="input-nombre" type="text" required
-                        class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
-                </div>
+            <nav class="flex-1 px-3 space-y-1">
+                <button id="sidebar-btn-productos" data-tab="productos" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    Productos
+                </button>
+                <button id="sidebar-btn-categorias" data-tab="categorias" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M7 7h.01M7 3h6.5a1 1 0 01.7.29l6.5 6.5a1 1 0 010 1.42l-8.5 8.5a1 1 0 01-1.42 0l-6.5-6.5A1 1 0 014 12.5V6a3 3 0 013-3z" />
+                    </svg>
+                    Categorías
+                </button>
+            </nav>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
-                    <textarea id="input-descripcion" rows="3"
-                        class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50"></textarea>
-                </div>
+            <div class="p-3 border-t border-ink-900/10">
+                <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-ink-700 hover:bg-white/60 hover:text-clay-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Ver tienda
+                </a>
+            </div>
+        </aside>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Precio *</label>
-                        <input id="input-precio" type="number" step="0.01" min="0" required
-                            class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
+        <!-- ============ CONTENIDO ============ -->
+        <div class="flex-1 ml-64 min-w-0">
+            <main class="max-w-6xl mx-auto px-6 sm:px-10 py-10">
+
+                <!-- ================= PANEL: PRODUCTOS ================= -->
+                <div id="panel-productos">
+                    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-8">
+                        <div>
+                            <p class="font-mono text-xs uppercase tracking-[0.25em] text-sage-600 mb-2">Catálogo</p>
+                            <h1 class="font-display text-3xl sm:text-4xl text-ink-900">Productos</h1>
+                            <p id="contador-productos" class="text-sm text-ink-500 mt-1"></p>
+                        </div>
+                        <button id="btn-nuevo-producto" type="button"
+                            class="inline-flex items-center justify-center gap-2 bg-ink-900 hover:bg-clay-600 text-sand-50 font-medium px-6 py-3 rounded-full text-sm transition-colors duration-300 shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Nuevo producto
+                        </button>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
-                        <select id="input-categoria"
-                            class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
-                            <option value="sahumerios">Sahumerios</option>
-                            <option value="cascadas">Cascadas</option>
-                            <option value="esencias">Esencias</option>
+
+                    <div class="flex flex-col sm:flex-row gap-3 mb-6">
+                        <div class="relative flex-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-ink-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input type="text" id="buscador-admin-productos" placeholder="Buscar productos..." autocomplete="off"
+                                class="w-full bg-white border border-ink-900/15 rounded-full pl-10 pr-4 py-2.5 text-sm placeholder-ink-500 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition">
+                        </div>
+                        <select id="filtro-categoria-admin"
+                            class="bg-white border border-ink-900/15 rounded-full px-4 py-2.5 text-sm text-ink-700 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition">
+                            <option value="todos">Todas las categorías</option>
                         </select>
                     </div>
+
+                    <div id="grid-productos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                        <p class="col-span-full text-center py-16 text-ink-500 text-sm">Cargando...</p>
+                    </div>
+                </div>
+
+                <!-- ================= PANEL: CATEGORÍAS ================= -->
+                <div id="panel-categorias" class="hidden">
+                    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-8">
+                        <div>
+                            <p class="font-mono text-xs uppercase tracking-[0.25em] text-sage-600 mb-2">Catálogo</p>
+                            <h1 class="font-display text-3xl sm:text-4xl text-ink-900">Categorías</h1>
+                            <p id="contador-categorias" class="text-sm text-ink-500 mt-1"></p>
+                        </div>
+                        <button id="btn-nueva-categoria" type="button"
+                            class="inline-flex items-center justify-center gap-2 bg-ink-900 hover:bg-clay-600 text-sand-50 font-medium px-6 py-3 rounded-full text-sm transition-colors duration-300 shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Nueva categoría
+                        </button>
+                    </div>
+
+                    <div id="lista-categorias" class="space-y-3">
+                        <p class="text-center py-16 text-ink-500 text-sm">Cargando...</p>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ============ MODAL: PRODUCTO ============ -->
+    <div id="overlay-producto" class="hidden fixed inset-0 bg-ink-900/40 backdrop-blur-sm z-[90] flex items-start sm:items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-sand-50 border border-ink-900/10 rounded-3xl shadow-2xl w-full max-w-lg my-8">
+            <div class="flex items-center justify-between px-6 sm:px-8 h-20 border-b border-ink-900/10 shrink-0">
+                <h2 id="modal-producto-titulo" class="font-display text-xl text-ink-900">Nuevo producto</h2>
+                <button id="btn-cerrar-modal-producto" type="button" class="p-2 hover:bg-ink-900/5 rounded-full transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-ink-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <form id="form-producto" class="px-6 sm:px-8 py-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-ink-700 mb-1">Nombre *</label>
+                    <input id="input-nombre" type="text" required
+                        class="w-full bg-white border border-ink-900/15 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">URL de imagen *</label>
-                    <input id="input-imagen" type="url" required placeholder="https://res.cloudinary.com/..."
-                        class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
-                    <img id="preview-imagen" class="hidden mt-3 h-32 w-32 object-cover rounded-xl border border-white/60" alt="Vista previa">
+                    <label class="block text-sm font-medium text-ink-700 mb-1">Descripción</label>
+                    <textarea id="input-descripcion" rows="3"
+                        class="w-full bg-white border border-ink-900/15 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition"></textarea>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
-                    <label class="flex items-center gap-2 text-sm text-gray-700">
-                        <input id="input-nuevo" type="checkbox" class="h-4 w-4 rounded text-teal-600">
-                        Marcar como "Nuevo"
-                    </label>
-                    <label class="flex items-center gap-2 text-sm text-gray-700">
-                        <input id="input-activo" type="checkbox" checked class="h-4 w-4 rounded text-teal-600">
-                        Visible en la tienda
-                    </label>
+                    <div>
+                        <label class="block text-sm font-medium text-ink-700 mb-1">Precio *</label>
+                        <input id="input-precio" type="number" step="0.01" min="0" required
+                            class="w-full bg-white border border-ink-900/15 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-ink-700 mb-1">Categoría</label>
+                        <select id="input-categoria"
+                            class="w-full bg-white border border-ink-900/15 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition">
+                            <option value="">Cargando categorías...</option>
+                        </select>
+                        <p class="text-xs text-ink-500 mt-1">
+                            ¿No está la que buscás? Creala en
+                            <button type="button" id="link-ir-categorias" class="text-clay-600 hover:underline font-medium">Categorías</button>.
+                        </p>
+                    </div>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Orden (opcional)</label>
-                    <input id="input-orden" type="number" step="1" placeholder="Dejalo vacío para orden alfabético"
-                        class="w-full bg-white/70 border border-white/60 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50">
+                    <label class="block text-sm font-medium text-ink-700 mb-1">URL de imagen *</label>
+                    <input id="input-imagen" type="url" required placeholder="https://res.cloudinary.com/..."
+                        class="w-full bg-white border border-ink-900/15 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition">
+                    <img id="preview-imagen" class="hidden mt-3 h-28 w-28 object-cover rounded-xl border border-ink-900/15" alt="Vista previa">
                 </div>
 
-                <button id="btn-guardar" type="submit"
-                    class="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3.5 rounded-2xl shadow-lg transition-all duration-300 disabled:opacity-50">
-                    Agregar producto
-                </button>
+                <div class="grid grid-cols-2 gap-4">
+                    <label class="flex items-center gap-2 text-sm text-ink-700">
+                        <input id="input-nuevo" type="checkbox" class="h-4 w-4 rounded text-clay-600 focus:ring-sage-500/40">
+                        Marcar como "Nuevo"
+                    </label>
+                    <div>
+                        <label class="flex items-center gap-2 text-sm text-ink-700">
+                            <input id="input-activo" type="checkbox" checked class="h-4 w-4 rounded text-clay-600 focus:ring-sage-500/40">
+                            Hay stock
+                        </label>
+                        <p class="text-xs text-ink-500 mt-1">Si lo desmarcás, el producto sigue en la tienda pero se muestra como "Sin stock" y no se puede comprar.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-ink-700 mb-1">Orden (opcional)</label>
+                    <input id="input-orden" type="number" step="1" placeholder="Dejalo vacío para orden alfabético"
+                        class="w-full bg-white border border-ink-900/15 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition">
+                </div>
+
+                <div class="flex gap-3 pt-2">
+                    <button id="btn-cancelar-producto" type="button"
+                        class="flex-1 bg-white border border-ink-900/15 hover:bg-ink-900/5 text-ink-700 font-medium py-3.5 rounded-full transition-colors duration-300">
+                        Cancelar
+                    </button>
+                    <button id="btn-guardar" type="submit"
+                        class="flex-1 bg-ink-900 hover:bg-clay-600 text-sand-50 font-semibold py-3.5 rounded-full shadow-sm transition-colors duration-300 disabled:opacity-50">
+                        Agregar producto
+                    </button>
+                </div>
             </form>
-        </section>
+        </div>
+    </div>
 
-        <!-- Columna derecha: listado -->
-        <section class="bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl p-6 h-fit">
-            <h2 class="text-xl font-bold text-gray-900 mb-6">Productos cargados</h2>
-            <div id="lista-productos" class="space-y-3 max-h-[70vh] overflow-y-auto">
-                <p class="text-gray-500 text-sm text-center py-10">Cargando...</p>
+    <!-- ============ MODAL: CATEGORÍA ============ -->
+    <div id="overlay-categoria" class="hidden fixed inset-0 bg-ink-900/40 backdrop-blur-sm z-[90] flex items-start sm:items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-sand-50 border border-ink-900/10 rounded-3xl shadow-2xl w-full max-w-md my-8">
+            <div class="flex items-center justify-between px-6 sm:px-8 h-20 border-b border-ink-900/10 shrink-0">
+                <h2 id="modal-categoria-titulo" class="font-display text-xl text-ink-900">Nueva categoría</h2>
+                <button id="btn-cerrar-modal-categoria" type="button" class="p-2 hover:bg-ink-900/5 rounded-full transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-ink-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-        </section>
 
-    </main>
+            <form id="form-categoria" class="px-6 sm:px-8 py-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-ink-700 mb-1">Nombre *</label>
+                    <input id="input-cat-nombre" type="text" required placeholder="Ej: Cascadas de Humo"
+                        class="w-full bg-white border border-ink-900/15 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-ink-700 mb-1">Identificador</label>
+                    <input id="input-cat-slug" type="text" disabled
+                        class="w-full bg-ink-900/5 border border-ink-900/15 rounded-xl px-4 py-2.5 text-ink-500 text-sm">
+                    <p class="text-xs text-ink-500 mt-1">Se genera solo a partir del nombre. Una vez creada la categoría, no cambia (así no se rompen los productos que ya la usan).</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-ink-700 mb-1">Orden (opcional)</label>
+                    <input id="input-cat-orden" type="number" step="1" placeholder="Dejalo vacío para orden alfabético"
+                        class="w-full bg-white border border-ink-900/15 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sage-500/40 focus:border-sage-500/50 transition">
+                </div>
+
+                <div class="flex gap-3 pt-2">
+                    <button id="btn-cancelar-categoria" type="button"
+                        class="flex-1 bg-white border border-ink-900/15 hover:bg-ink-900/5 text-ink-700 font-medium py-3.5 rounded-full transition-colors duration-300">
+                        Cancelar
+                    </button>
+                    <button id="btn-guardar-cat" type="submit"
+                        class="flex-1 bg-ink-900 hover:bg-clay-600 text-sand-50 font-semibold py-3.5 rounded-full shadow-sm transition-colors duration-300 disabled:opacity-50">
+                        Agregar categoría
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        .sidebar-btn { color: #4A4038; }
+        .sidebar-btn.activo { background: #2B2621; color: #FAF7F0; }
+        .sidebar-btn:not(.activo):hover { background: rgba(255,255,255,0.6); color: #8F5539; }
+    </style>
 
     <script type="module" src="admin.js"></script>
 </body>
