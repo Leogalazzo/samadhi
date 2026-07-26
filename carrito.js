@@ -1,10 +1,5 @@
-// ==========================================================
-// CARRITO.JS - Lógica de carrito para Samadhi
-// ==========================================================
 
-// ⚠️ CONFIGURACIÓN: reemplazá por el número real de WhatsApp
-// Formato: código de país + área + número, sin espacios ni símbolos.
-const WHATSAPP_NUMERO = "5493735000000"; // TODO: poner el número real
+const WHATSAPP_NUMERO = "5493644539325"; // TODO: poner el número real
 window.WHATSAPP_NUMERO = WHATSAPP_NUMERO; // accesible también desde scripts type="module" (ej. producto.html)
 
 let carrito = JSON.parse(localStorage.getItem('aromas_carrito')) || [];
