@@ -4,153 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Producto | Samadhi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            light: '#e0e7ff',
-                            DEFAULT: '#6366f1',
-                            dark: '#4338ca',
-                        }
-                    }
-                }
-            }
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-sand-50:  #FAF7F0;
+            --color-sand-100: #F1EAD9;
+            --color-sand-200: #E4D8BE;
+            --color-sand-300: #D3C3A0;
+            --color-ink-900:  #2B2621;
+            --color-ink-700:  #4A4038;
+            --color-ink-500:  #7A6F61;
+            --color-clay-500: #A86A4B;
+            --color-clay-600: #8F5539;
+            --color-sage-500: #7C8B6F;
+            --color-sage-600: #626F57;
+            --color-brass-400:#C9A24B;
+            --color-brass-500:#B08A3C;
+
+            --font-display: "Fraunces", ui-serif, serif;
+            --font-body: "Work Sans", ui-sans-serif, sans-serif;
+            --font-mono: "IBM Plex Mono", ui-monospace, monospace;
         }
-    </script>
+    </style>
+    <style>
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+        }
+        .textura-papel {
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(168,106,75,0.06), transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(124,139,111,0.07), transparent 45%);
+        }
+        ::selection { background: #E4D8BE; color: #2B2621; }
+    </style>
 </head>
-<body class="relative min-h-screen text-gray-800 font-sans overflow-x-hidden bg-stone-50">
+<body class="relative min-h-screen bg-sand-50 text-ink-900 font-body antialiased">
 
-    <!-- El mismo Fondo Abstracto de la Home -->
-    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-200/50 blur-[100px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-teal-200/40 blur-[120px]"></div>
-        <div class="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-amber-100/60 blur-[80px]"></div>
-    </div>
+    <div class="fixed inset-0 -z-10 textura-papel pointer-events-none"></div>
 
-    <!-- Navegación Glassmorphism (Igual a index.html) -->
-    <nav class="fixed w-full z-50 top-0 bg-white/30 backdrop-blur-md border-b border-white/40 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Navegación (igual a la Home) -->
+    <nav class="fixed w-full z-50 top-0 bg-sand-50/80 backdrop-blur-md border-b border-ink-900/10">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="text-2xl font-semibold tracking-wide text-gray-800">
-                    Samadhi<span class="text-teal-600">.</span>
+                <a href="index.html" class="flex items-center gap-2.5">
+                    <img src="logo.png" alt="" class="h-8 w-8 object-contain" onerror="this.style.display='none'">
+                    <span class="font-display text-2xl tracking-wide text-ink-900">Samadhi</span>
                 </a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-700 hover:text-teal-700 transition">Inicio</a>
-                    <a href="index.html#categorias" class="text-gray-700 hover:text-teal-700 transition">Categorías</a>
+                <div class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-widest text-ink-700">
+                    <a href="index.html" class="hover:text-clay-600 transition-colors">Inicio</a>
+                    <a href="index.html#destacados" class="hover:text-clay-600 transition-colors">Productos</a>
                 </div>
-                <button class="btn-abrir-carrito relative p-2 bg-white/40 hover:bg-white/60 rounded-full backdrop-blur-sm border border-white/50 transition shadow-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                <button class="btn-abrir-carrito relative p-2.5 hover:bg-ink-900/5 rounded-full transition-colors" aria-label="Abrir carrito">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ink-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
-                    <span class="absolute top-0 right-0 bg-teal-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center translate-x-1 -translate-y-1" id="cart-count">0</span>
+                    <span class="absolute top-0.5 right-0.5 bg-clay-500 text-sand-50 text-[10px] font-mono font-medium rounded-full h-4.5 w-4.5 min-w-[18px] px-0.5 flex items-center justify-center" id="cart-count">0</span>
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Contenedor Principal del Producto -->
-    <main class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-        
-        <!-- Botón para volver al listado -->
-        <a href="index.html#destacados" class="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-white/40 hover:bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl text-gray-700 hover:text-teal-700 font-medium text-sm shadow-sm transition">
+    <main class="pt-32 pb-16 px-5 sm:px-8 max-w-6xl mx-auto">
+
+        <a href="index.html#destacados" class="inline-flex items-center gap-2 mb-10 text-sm font-medium text-ink-700 hover:text-clay-600 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Volver a productos
         </a>
 
-        <!-- ================= SKELETON (mientras carga desde Firestore) ================= -->
-        <div id="product-skeleton" class="grid grid-cols-1 lg:grid-cols-2 gap-12 animate-pulse">
-            <div class="bg-white/30 backdrop-blur-xl border border-white/50 shadow-2xl shadow-teal-900/5 rounded-[2.5rem] p-4 h-fit">
-                <div class="aspect-square rounded-3xl bg-gray-300/50"></div>
+        <!-- ================= SKELETON ================= -->
+        <div id="product-skeleton" class="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-pulse">
+            <div class="bg-sand-100 border border-ink-900/10 rounded-3xl p-4 h-fit">
+                <div class="aspect-square rounded-2xl bg-ink-900/10"></div>
             </div>
             <div class="flex flex-col justify-center">
-                <div class="h-6 w-32 bg-gray-300/50 rounded-full mb-4"></div>
-                <div class="h-10 bg-gray-300/50 rounded-full w-5/6 mb-3"></div>
-                <div class="h-10 bg-gray-300/50 rounded-full w-2/3 mb-6"></div>
-                <div class="h-8 bg-gray-300/40 rounded-full w-1/3 mb-6"></div>
-                <div class="h-4 bg-gray-300/40 rounded-full w-full mb-2"></div>
-                <div class="h-4 bg-gray-300/40 rounded-full w-full mb-2"></div>
-                <div class="h-4 bg-gray-300/40 rounded-full w-3/4 mb-8"></div>
-                <div class="h-14 bg-gray-300/50 rounded-2xl w-full mb-4"></div>
-                <div class="h-14 bg-gray-300/40 rounded-2xl w-full"></div>
+                <div class="h-3 w-24 bg-ink-900/10 rounded-full mb-5"></div>
+                <div class="h-10 bg-ink-900/10 rounded-full w-5/6 mb-3"></div>
+                <div class="h-10 bg-ink-900/10 rounded-full w-2/3 mb-6"></div>
+                <div class="h-6 bg-ink-900/10 rounded-full w-1/3 mb-6"></div>
+                <div class="h-4 bg-ink-900/10 rounded-full w-full mb-2"></div>
+                <div class="h-4 bg-ink-900/10 rounded-full w-full mb-2"></div>
+                <div class="h-4 bg-ink-900/10 rounded-full w-3/4 mb-8"></div>
+                <div class="h-14 bg-ink-900/10 rounded-full w-full mb-4"></div>
+                <div class="h-14 bg-ink-900/10 rounded-full w-full"></div>
             </div>
         </div>
 
-        <!-- ================= CONTENIDO REAL (oculto hasta que llega el producto) ================= -->
-        <div id="product-content" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-12">
-            
-            <!-- Columna Izquierda: Imagen (Glassmorphism card) -->
-            <div class="bg-white/30 backdrop-blur-xl border border-white/50 shadow-2xl shadow-teal-900/5 rounded-[2.5rem] p-4 h-fit">
-                <div class="aspect-square overflow-hidden rounded-3xl relative">
+        <!-- ================= CONTENIDO REAL ================= -->
+        <div id="product-content" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-14">
+
+            <!-- Imagen -->
+            <div class="bg-sand-100 border border-ink-900/10 rounded-3xl p-4 h-fit">
+                <div class="aspect-square overflow-hidden rounded-2xl relative">
                     <img id="product-img" src="" alt="" class="w-full h-full object-cover">
+                    <div id="product-stock-badge" class="hidden absolute top-4 left-4 bg-ink-900/85 px-3 py-1 rounded-full font-mono text-[10px] uppercase tracking-wider text-sand-50">Sin stock</div>
                 </div>
             </div>
 
-            <!-- Columna Derecha: Detalles del Producto -->
+            <!-- Detalles -->
             <div class="flex flex-col justify-center">
-                <!-- Etiquetas -->
-                <div class="flex items-center space-x-3 mb-4">
-                    <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-bold rounded-full tracking-wide uppercase">Stock Disponible</span>
-                </div>
+                <p id="product-stock-label" class="font-mono text-xs uppercase tracking-[0.25em] text-sage-600 mb-4">En stock · retiro en Villa Ángela</p>
 
-                <h1 id="product-title" class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight"></h1>
-                
-                <p id="product-price" class="text-3xl font-black text-teal-600 mb-6"></p>
-                
-                <div class="prose prose-gray mb-8">
-                    <p id="product-desc" class="text-gray-600 text-lg leading-relaxed"></p>
-                </div>
+                <h1 id="product-title" class="font-display text-4xl md:text-5xl text-ink-900 mb-4 leading-tight"></h1>
 
-                <hr class="border-gray-200/50 mb-8">
+                <p id="product-price" class="font-mono text-2xl font-medium text-clay-600 mb-6"></p>
+
+                <p id="product-desc" class="text-ink-700 text-lg leading-relaxed mb-8"></p>
+
+                <hr class="border-ink-900/10 mb-8">
 
                 <!-- Controles de Compra -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                    <!-- Selector de Cantidad (Estilo Glass) -->
-                    <div class="flex items-center justify-between bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl px-4 py-2 w-full sm:w-32 shadow-sm">
-                        <button id="btn-restar" class="text-gray-500 hover:text-teal-600 font-bold text-xl px-2 transition">-</button>
-                        <span id="product-qty" class="text-lg font-semibold text-gray-800">1</span>
-                        <button id="btn-sumar" class="text-gray-500 hover:text-teal-600 font-bold text-xl px-2 transition">+</button>
+                <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                    <div class="flex items-center justify-between bg-white border border-ink-900/15 rounded-full px-4 py-2 w-full sm:w-32">
+                        <button id="btn-restar" class="text-ink-500 hover:text-clay-600 font-medium text-xl px-2 transition">-</button>
+                        <span id="product-qty" class="font-mono text-base text-ink-900">1</span>
+                        <button id="btn-sumar" class="text-ink-500 hover:text-clay-600 font-medium text-xl px-2 transition">+</button>
                     </div>
 
-                    <!-- Botón Agregar -->
-                    <button id="btn-agregar-producto" class="flex-1 bg-gray-900 hover:bg-gray-800 text-white font-semibold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2">
+                    <button id="btn-agregar-producto" class="flex-1 bg-ink-900 hover:bg-ink-700 text-sand-50 font-medium py-4 rounded-full transition-colors duration-300 flex items-center justify-center space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        <span>Agregar al Carrito</span>
+                        <span>Agregar al carrito</span>
                     </button>
                 </div>
 
-                <!-- Botón de WhatsApp Alternativo -->
-                <button id="btn-whatsapp-producto" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 rounded-2xl shadow-md transition-all duration-300 flex items-center justify-center space-x-2 mb-8">
+                <button id="btn-whatsapp-producto" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-4 rounded-full transition-colors duration-300 flex items-center justify-center space-x-2 mb-10">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.393.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"></path>
                     </svg>
                     <span>Consultar por WhatsApp</span>
                 </button>
 
-                <!-- Tarjetas de Información Extra (Glassmorphism) -->
+                <!-- Info extra -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bg-white/40 backdrop-blur-sm border border-white/60 p-4 rounded-2xl flex items-start space-x-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    <div class="bg-sand-100 border border-ink-900/10 p-4 rounded-2xl flex items-start space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sage-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                         </svg>
                         <div>
-                            <h4 class="font-bold text-gray-800 text-sm">Retiro Gratis</h4>
-                            <p class="text-xs text-gray-600 mt-1">En nuestro punto de entrega en Villa Ángela.</p>
+                            <h4 class="font-medium text-ink-900 text-sm">Retiro gratis</h4>
+                            <p class="text-xs text-ink-500 mt-1">En nuestro punto de entrega en Villa Ángela.</p>
                         </div>
                     </div>
-                    <div class="bg-white/40 backdrop-blur-sm border border-white/60 p-4 rounded-2xl flex items-start space-x-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <div class="bg-sand-100 border border-ink-900/10 p-4 rounded-2xl flex items-start space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sage-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M3 10h18M7 15h1m4 0h1m-9 4h16a1 1 0 001-1V6a1 1 0 00-1-1H4a1 1 0 00-1 1v12a1 1 0 001 1z" />
                         </svg>
                         <div>
-                            <h4 class="font-bold text-gray-800 text-sm">Medios de Pago</h4>
-                            <p class="text-xs text-gray-600 mt-1">Efectivo, Transferencia y Mercado Pago.</p>
+                            <h4 class="font-medium text-ink-900 text-sm">Medios de pago</h4>
+                            <p class="text-xs text-ink-500 mt-1">Efectivo, transferencia y Mercado Pago.</p>
                         </div>
                     </div>
                 </div>
@@ -159,6 +169,13 @@
         </div>
         <!-- /#product-content -->
     </main>
+
+    <footer class="mt-20 border-t border-ink-900/10">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="font-display text-lg text-ink-900">Samadhi<span class="text-clay-600">.</span></p>
+            <p class="text-sm text-ink-500">&copy; 2026 Samadhi — Villa Ángela. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
     <script src="carrito.js"></script>
     <script type="module">
@@ -178,13 +195,16 @@
         const elPrice = document.getElementById('product-price');
         const elDesc = document.getElementById('product-desc');
         const elQty = document.getElementById('product-qty');
+        const elStockLabel = document.getElementById('product-stock-label');
+        const elStockBadge = document.getElementById('product-stock-badge');
         const btnAgregar = document.getElementById('btn-agregar-producto');
         const btnWhatsapp = document.getElementById('btn-whatsapp-producto');
+        const btnSumar = document.getElementById('btn-sumar');
+        const btnRestar = document.getElementById('btn-restar');
 
         let PRODUCTO_ACTUAL = null;
         let cantidadSeleccionada = 1;
 
-        // Reemplaza el skeleton por el contenido real (recién ahí se ve algo)
         function mostrarContenido() {
             elSkeleton.classList.add('hidden');
             elContent.classList.remove('hidden');
@@ -196,6 +216,27 @@
                 btn.disabled = true;
                 btn.classList.add('opacity-50', 'cursor-not-allowed');
             });
+        }
+
+        function aplicarSinStock() {
+            elStockLabel.innerText = 'Sin stock por el momento';
+            elStockLabel.classList.remove('text-sage-600');
+            elStockLabel.classList.add('text-clay-600');
+            elStockBadge.classList.remove('hidden');
+            elImg.classList.add('grayscale', 'opacity-70');
+
+            [btnSumar, btnRestar, btnAgregar].forEach(btn => {
+                if (!btn) return;
+                btn.disabled = true;
+                btn.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+
+            btnAgregar.querySelector('span').innerText = 'Sin stock';
+
+            // El WhatsApp queda activo: puede servir para preguntar cuándo vuelve a haber stock.
+            if (btnWhatsapp) {
+                btnWhatsapp.querySelector('span').innerText = 'Consultar disponibilidad';
+            }
         }
 
         function mostrarError(mensaje) {
@@ -213,7 +254,7 @@
                 const listo = () => resolve();
                 pre.onload = listo;
                 pre.onerror = listo;
-                setTimeout(listo, 1500); // por si la imagen tarda demasiado
+                setTimeout(listo, 1500);
                 pre.src = src;
                 elImg.src = src;
             });
@@ -235,24 +276,26 @@
 
                 const data = snap.data();
 
+                const sinStock = data.activo === false;
+
                 PRODUCTO_ACTUAL = {
                     id: snap.id,
                     nombre: data.nombre || 'Producto',
                     precio: Number(data.precio || 0),
-                    imagen: data.imagen || ''
+                    imagen: data.imagen || '',
+                    activo: !sinStock
                 };
 
-                document.title = `${PRODUCTO_ACTUAL.nombre} | Aromas`;
+                document.title = `${PRODUCTO_ACTUAL.nombre} | Samadhi`;
                 elImg.alt = PRODUCTO_ACTUAL.nombre;
                 elTitle.innerText = PRODUCTO_ACTUAL.nombre;
                 elPrice.innerText = `$${PRODUCTO_ACTUAL.precio.toLocaleString('es-AR')}`;
                 elDesc.innerText = data.descripcion || '';
 
-                // Esperamos a que la imagen termine de descargar (o falle, o
-                // pasen 1.5s) para que no se vea un cuadro en blanco al revelar
                 await esperarImagen(PRODUCTO_ACTUAL.imagen);
 
-                // Recién mostramos el contenido real una vez que ya está todo cargado
+                if (sinStock) aplicarSinStock();
+
                 mostrarContenido();
             } catch (error) {
                 console.error('Error al cargar el producto:', error);
@@ -273,7 +316,7 @@
         });
 
         btnAgregar.addEventListener('click', () => {
-            if (!PRODUCTO_ACTUAL) return;
+            if (!PRODUCTO_ACTUAL || PRODUCTO_ACTUAL.activo === false) return;
             agregarAlCarrito({
                 ...PRODUCTO_ACTUAL,
                 cantidad: cantidadSeleccionada
