@@ -41,12 +41,12 @@ function mostrarSkeletons(cantidad = 4) {
     contenedor.innerHTML = '';
     for (let i = 0; i < cantidad; i++) {
         const skeleton = document.createElement('div');
-        skeleton.className = 'bg-sand-100 border border-ink-900/10 rounded-3xl p-4 animate-pulse';
+        skeleton.className = 'bg-sand-100 border border-ink-900/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 animate-pulse';
         skeleton.innerHTML = `
-            <div class="aspect-square rounded-2xl bg-ink-900/10 mb-4"></div>
-            <div class="h-3 bg-ink-900/10 rounded-full w-1/3 mb-3"></div>
-            <div class="h-4 bg-ink-900/10 rounded-full w-3/4 mb-4"></div>
-            <div class="h-10 bg-ink-900/10 rounded-full w-full"></div>
+            <div class="aspect-square rounded-xl sm:rounded-2xl bg-ink-900/10 mb-3 sm:mb-4"></div>
+            <div class="h-2.5 sm:h-3 bg-ink-900/10 rounded-full w-1/3 mb-2.5 sm:mb-3"></div>
+            <div class="h-3.5 sm:h-4 bg-ink-900/10 rounded-full w-3/4 mb-3 sm:mb-4"></div>
+            <div class="h-9 sm:h-10 bg-ink-900/10 rounded-full w-full"></div>
         `;
         contenedor.appendChild(skeleton);
     }
@@ -83,14 +83,14 @@ function crearCardProducto(producto) {
     const sinStock = producto.activo === false;
 
     const card = document.createElement('div');
-    card.className = 'group bg-white border border-ink-900/10 rounded-3xl p-4 flex flex-col hover:border-ink-900/20 hover:-translate-y-1 transition-all duration-300 reveal';
+    card.className = 'group bg-white border border-ink-900/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 flex flex-col h-full hover:border-ink-900/20 hover:-translate-y-1 transition-all duration-300 reveal';
 
     const link = document.createElement('a');
     link.href = `producto.html?id=${producto.id}`;
-    link.className = 'block';
+    link.className = 'flex-1 flex flex-col';
 
     const imgWrap = document.createElement('div');
-    imgWrap.className = 'aspect-square overflow-hidden rounded-2xl mb-4 relative bg-sand-100';
+    imgWrap.className = 'aspect-square overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-4 relative bg-sand-100';
 
     const img = document.createElement('img');
     img.src = producto.imagen || 'https://images.unsplash.com/photo-1596433809252-260c27459eb5?auto=format&fit=crop&w=500&q=80';
@@ -101,30 +101,30 @@ function crearCardProducto(producto) {
 
     if (producto.nuevo && !sinStock) {
         const etiqueta = document.createElement('div');
-        etiqueta.className = 'absolute top-3 left-3 bg-sand-50/95 px-3 py-1 rounded-full font-mono text-[10px] uppercase tracking-wider text-clay-600';
+        etiqueta.className = 'absolute top-2 left-2 sm:top-3 sm:left-3 bg-sand-50/95 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-clay-600';
         etiqueta.innerText = 'Nuevo';
         imgWrap.appendChild(etiqueta);
     }
 
     if (sinStock) {
         const etiquetaStock = document.createElement('div');
-        etiquetaStock.className = 'absolute top-3 left-3 bg-ink-900/85 px-3 py-1 rounded-full font-mono text-[10px] uppercase tracking-wider text-sand-50';
+        etiquetaStock.className = 'absolute top-2 left-2 sm:top-3 sm:left-3 bg-ink-900/85 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-sand-50';
         etiquetaStock.innerText = 'Sin stock';
         imgWrap.appendChild(etiquetaStock);
     }
 
     const info = document.createElement('div');
-    info.className = 'flex-1';
+    info.className = 'flex-1 flex flex-col';
 
     if (producto.categoria) {
         const cat = document.createElement('p');
-        cat.className = 'font-mono text-[10px] uppercase tracking-widest text-sage-600 mb-1.5';
+        cat.className = 'font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-sage-600 mb-1 sm:mb-1.5';
         cat.innerText = nombreCategoria(producto.categoria);
         info.appendChild(cat);
     }
 
     const titulo = document.createElement('h3');
-    titulo.className = 'text-base font-medium text-ink-900 leading-snug';
+    titulo.className = 'text-sm sm:text-base font-medium text-ink-900 leading-snug line-clamp-2 min-h-[2.2em] sm:min-h-[2.5em]';
     titulo.style.fontFamily = "'Fraunces', serif";
     titulo.innerText = producto.nombre || 'Sin nombre';
 
@@ -133,10 +133,10 @@ function crearCardProducto(producto) {
     link.appendChild(info);
 
     const footer = document.createElement('div');
-    footer.className = 'mt-4 flex justify-between items-center pt-4 border-t border-ink-900/10';
+    footer.className = 'mt-3 sm:mt-4 flex justify-between items-center pt-3 sm:pt-4 border-t border-ink-900/10';
 
     const precio = document.createElement('span');
-    precio.className = `text-base font-medium ${sinStock ? 'text-ink-500' : 'text-ink-900'}`;
+    precio.className = `text-sm sm:text-base font-medium ${sinStock ? 'text-ink-500' : 'text-ink-900'}`;
     precio.style.fontFamily = "'IBM Plex Mono', monospace";
     precio.innerText = `$${Number(producto.precio || 0).toLocaleString('es-AR')}`;
 
@@ -148,12 +148,12 @@ function crearCardProducto(producto) {
         const btnSinStock = document.createElement('button');
         btnSinStock.type = 'button';
         btnSinStock.disabled = true;
-        btnSinStock.className = 'shrink-0 bg-ink-900/10 text-ink-500 font-mono text-[10px] uppercase tracking-wider px-3.5 py-2 rounded-full cursor-not-allowed';
+        btnSinStock.className = 'shrink-0 bg-ink-900/10 text-ink-500 font-mono text-[9px] sm:text-[10px] uppercase tracking-wider px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full cursor-not-allowed';
         btnSinStock.innerText = 'Sin stock';
         footer.appendChild(btnSinStock);
     } else {
         const btn = document.createElement('button');
-        btn.className = 'btn-agregar-carrito bg-ink-900 hover:bg-clay-600 text-sand-50 h-9 w-9 rounded-full flex items-center justify-center transition-colors';
+        btn.className = 'btn-agregar-carrito bg-ink-900 hover:bg-clay-600 text-sand-50 h-8 w-8 sm:h-9 sm:w-9 rounded-full flex items-center justify-center transition-colors shrink-0';
         btn.dataset.id = producto.id;
         btn.dataset.nombre = producto.nombre || 'Sin nombre';
         btn.dataset.precio = producto.precio || 0;
@@ -161,7 +161,7 @@ function crearCardProducto(producto) {
         btn.dataset.cantidad = '1';
         btn.setAttribute('aria-label', `Agregar ${producto.nombre || 'producto'} al carrito`);
         btn.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
         `;
@@ -234,7 +234,7 @@ function renderFiltrosCategoria() {
 }
 
 function chipClase(activo) {
-    return `px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider border transition-colors ${
+    return `px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-mono text-[11px] sm:text-xs uppercase tracking-wider border transition-colors ${
         activo
             ? 'bg-ink-900 border-ink-900 text-sand-50'
             : 'bg-transparent border-ink-900/15 text-ink-700 hover:border-ink-900/40'
