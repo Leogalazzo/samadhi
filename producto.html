@@ -80,8 +80,8 @@
         </a>
 
         <!-- ================= SKELETON ================= -->
-        <div id="product-skeleton" class="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-pulse">
-            <div class="bg-sand-100 border border-ink-900/10 rounded-3xl p-4 h-fit">
+        <div id="product-skeleton" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 animate-pulse">
+            <div class="bg-sand-100 border border-ink-900/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 h-fit">
                 <div class="aspect-square rounded-2xl bg-ink-900/10"></div>
             </div>
             <div class="flex flex-col justify-center">
@@ -92,16 +92,16 @@
                 <div class="h-4 bg-ink-900/10 rounded-full w-full mb-2"></div>
                 <div class="h-4 bg-ink-900/10 rounded-full w-full mb-2"></div>
                 <div class="h-4 bg-ink-900/10 rounded-full w-3/4 mb-8"></div>
-                <div class="h-14 bg-ink-900/10 rounded-full w-full mb-4"></div>
-                <div class="h-14 bg-ink-900/10 rounded-full w-full"></div>
+                <div class="h-11 sm:h-14 bg-ink-900/10 rounded-full w-full mb-3 sm:mb-4"></div>
+                <div class="h-11 sm:h-14 bg-ink-900/10 rounded-full w-full"></div>
             </div>
         </div>
 
         <!-- ================= CONTENIDO REAL ================= -->
-        <div id="product-content" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-14">
+        <div id="product-content" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14">
 
             <!-- Imagen -->
-            <div class="bg-sand-100 border border-ink-900/10 rounded-3xl p-4 h-fit">
+            <div class="bg-sand-100 border border-ink-900/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 h-fit">
                 <div class="aspect-square overflow-hidden rounded-2xl relative">
                     <img id="product-img" src="" alt="" class="w-full h-full object-cover">
                     <div id="product-stock-badge" class="hidden absolute top-4 left-4 bg-ink-900/85 px-3 py-1 rounded-full font-mono text-[10px] uppercase tracking-wider text-sand-50">Sin stock</div>
@@ -110,7 +110,7 @@
 
             <!-- Detalles -->
             <div class="flex flex-col justify-center">
-                <p id="product-stock-label" class="font-mono text-xs uppercase tracking-[0.25em] text-sage-600 mb-4">En stock · retiro en Villa Ángela</p>
+                <p id="product-stock-label" class="font-mono text-xs uppercase tracking-[0.25em] text-sage-600 mb-4">En stock</p>
 
                 <h1 id="product-title" class="font-display text-4xl md:text-5xl text-ink-900 mb-4 leading-tight"></h1>
 
@@ -121,23 +121,23 @@
                 <hr class="border-ink-900/10 mb-8">
 
                 <!-- Controles de Compra -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-4">
-                    <div class="flex items-center justify-between bg-white border border-ink-900/15 rounded-full px-4 py-2 w-full sm:w-32">
-                        <button id="btn-restar" class="text-ink-500 hover:text-clay-600 font-medium text-xl px-2 transition">-</button>
-                        <span id="product-qty" class="font-mono text-base text-ink-900">1</span>
-                        <button id="btn-sumar" class="text-ink-500 hover:text-clay-600 font-medium text-xl px-2 transition">+</button>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4">
+                    <div class="flex items-center justify-between bg-white border border-ink-900/15 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 w-full sm:w-32">
+                        <button id="btn-restar" class="text-ink-500 hover:text-clay-600 font-medium text-lg sm:text-xl px-2 transition">-</button>
+                        <span id="product-qty" class="font-mono text-sm sm:text-base text-ink-900">1</span>
+                        <button id="btn-sumar" class="text-ink-500 hover:text-clay-600 font-medium text-lg sm:text-xl px-2 transition">+</button>
                     </div>
 
-                    <button id="btn-agregar-producto" class="flex-1 bg-ink-900 hover:bg-ink-700 text-sand-50 font-medium py-4 rounded-full transition-colors duration-300 flex items-center justify-center space-x-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button id="btn-agregar-producto" class="flex-1 bg-ink-900 hover:bg-ink-700 text-sand-50 font-medium text-sm sm:text-base py-3 sm:py-4 rounded-full transition-colors duration-300 flex items-center justify-center space-x-1.5 sm:space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         <span>Agregar al carrito</span>
                     </button>
                 </div>
 
-                <button id="btn-whatsapp-producto" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-4 rounded-full transition-colors duration-300 flex items-center justify-center space-x-2 mb-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <button id="btn-whatsapp-producto" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm sm:text-base py-3 sm:py-4 rounded-full transition-colors duration-300 flex items-center justify-center space-x-1.5 sm:space-x-2 mb-8 sm:mb-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.393.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"></path>
                     </svg>
                     <span>Consultar por WhatsApp</span>
@@ -151,7 +151,7 @@
                         </svg>
                         <div>
                             <h4 class="font-medium text-ink-900 text-sm">Retiro gratis</h4>
-                            <p class="text-xs text-ink-500 mt-1">En nuestro punto de entrega en Villa Ángela.</p>
+                            <p class="text-xs text-ink-500 mt-1">En nuestro punto de entrega.</p>
                         </div>
                     </div>
                     <div class="bg-sand-100 border border-ink-900/10 p-4 rounded-2xl flex items-start space-x-3">
@@ -160,7 +160,7 @@
                         </svg>
                         <div>
                             <h4 class="font-medium text-ink-900 text-sm">Medios de pago</h4>
-                            <p class="text-xs text-ink-500 mt-1">Efectivo, transferencia y Mercado Pago.</p>
+                            <p class="text-xs text-ink-500 mt-1">Efectivo, transferencia</p>
                         </div>
                     </div>
                 </div>
@@ -168,14 +168,74 @@
             </div>
         </div>
         <!-- /#product-content -->
-    </main>
 
-    <footer class="mt-20 border-t border-ink-900/10">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p class="font-display text-lg text-ink-900">Samadhi<span class="text-clay-600">.</span></p>
-            <p class="text-sm text-ink-500">&copy; 2026 Samadhi — Villa Ángela. Todos los derechos reservados.</p>
+        <!-- ================= PRODUCTOS RELACIONADOS ================= -->
+        <section id="relacionados-section" class="mt-20 opacity-0 translate-y-6 transition-all duration-700 ease-out">
+            <h2 class="font-display text-2xl md:text-3xl text-ink-900 mb-8">También te puede interesar</h2>
+            <div id="relacionados-grid" class="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6"></div>
+        </section>
+    </main>
+<!-- Footer -->
+<footer class="mt-20 border-t border-ink-900/10 bg-white">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12 md:py-16">
+        
+        <!-- Grid Principal -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+            
+            <!-- Columna 1: Marca y descripción -->
+            <div class="md:col-span-2">
+                <p class="font-display text-2xl font-bold text-ink-900 mb-4">Samadhi<span class="text-clay-600">.</span></p>
+                <p class="text-sm text-ink-500 leading-relaxed max-w-sm">
+                    Espacio dedicado al bienestar y la armonía. Brindamos servicios de alta calidad para potenciar tu equilibrio en la ciudad.
+                </p>
+            </div>
+
+            <!-- Columna 2: Enlaces Rápidos -->
+            <div>
+                <h3 class="font-semibold text-ink-900 mb-4 tracking-wide uppercase text-xs">Explorar</h3>
+                <ul class="space-y-3 text-sm text-ink-500">
+                    <li><a href="#" class="hover:text-clay-600 transition-colors duration-200">Inicio</a></li>
+                    <li><a href="#" class="hover:text-clay-600 transition-colors duration-200">Servicios</a></li>
+                    <li><a href="#" class="hover:text-clay-600 transition-colors duration-200">Nosotros</a></li>
+                    <li><a href="#" class="hover:text-clay-600 transition-colors duration-200">Contacto</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contacto y Redes -->
+            <div>
+                <h3 class="font-semibold text-ink-900 mb-4 tracking-wide uppercase text-xs">Contacto</h3>
+                <ul class="space-y-3 text-sm text-ink-500 mb-6">
+                    <li class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-clay-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Villa Ángela, Chaco
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-clay-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        hola@samadhi.com.ar
+                    </li>
+                </ul>
+                
+                <!-- Redes Sociales -->
+                <div class="flex gap-4">
+                    <a href="#" class="text-ink-500 hover:text-clay-600 transition-colors duration-200" aria-label="Instagram">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+                    </a>
+                    <!-- Puedes duplicar este <a> y cambiar el SVG para Facebook, WhatsApp, etc. -->
+                </div>
+            </div>
         </div>
-    </footer>
+
+        <!-- Divisor y Copyright Inferior -->
+        <div class="mt-12 pt-8 border-t border-ink-900/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-ink-500">&copy; 2026 Samadhi — Villa Ángela. Todos los derechos reservados.</p>
+            <div class="flex gap-6 text-sm text-ink-500">
+                <a href="#" class="hover:text-clay-600 transition-colors">Términos</a>
+                <a href="#" class="hover:text-clay-600 transition-colors">Privacidad</a>
+            </div>
+        </div>
+        
+    </div>
+</footer>
 
     <script src="carrito.js"></script>
     <script type="module">
@@ -183,7 +243,10 @@
         // Carga dinámica del producto según ?id= en la URL
         // ==========================================================
         import { db } from "./firebase-config.js";
-        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import {
+            doc, getDoc,
+            collection, query, where, limit, getDocs
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const params = new URLSearchParams(window.location.search);
         const productoId = params.get('id');
@@ -260,6 +323,140 @@
             });
         }
 
+        // ==========================================================
+        // PRODUCTOS RELACIONADOS
+        // ==========================================================
+        function crearCardRelacionado(producto) {
+            const sinStock = producto.activo === false;
+
+            const card = document.createElement('div');
+            card.className = 'group bg-white border border-ink-900/10 rounded-3xl p-3 md:p-4 flex flex-col h-full hover:border-ink-900/20 hover:-translate-y-1 transition-all duration-300 opacity-0 translate-y-4';
+
+            const link = document.createElement('a');
+            link.href = `producto.html?id=${producto.id}`;
+            link.className = 'flex-1 flex flex-col';
+
+            const imgWrap = document.createElement('div');
+            imgWrap.className = 'aspect-square overflow-hidden rounded-2xl mb-3 relative bg-sand-100';
+
+            const img = document.createElement('img');
+            img.src = producto.imagen || 'https://images.unsplash.com/photo-1596433809252-260c27459eb5?auto=format&fit=crop&w=500&q=80';
+            img.alt = producto.nombre || 'Producto';
+            img.loading = 'lazy';
+            img.className = `w-full h-full object-cover transition-all duration-500 ${sinStock ? 'grayscale opacity-60' : 'group-hover:scale-105'}`;
+            imgWrap.appendChild(img);
+
+            if (sinStock) {
+                const etiqueta = document.createElement('div');
+                etiqueta.className = 'absolute top-2 left-2 bg-ink-900/85 px-2.5 py-1 rounded-full font-mono text-[9px] uppercase tracking-wider text-sand-50';
+                etiqueta.innerText = 'Sin stock';
+                imgWrap.appendChild(etiqueta);
+            }
+
+            const titulo = document.createElement('h3');
+            titulo.className = 'text-sm font-medium text-ink-900 leading-snug line-clamp-2 min-h-[2.5em]';
+            titulo.style.fontFamily = "'Fraunces', serif";
+            titulo.innerText = producto.nombre || 'Sin nombre';
+
+            link.appendChild(imgWrap);
+            link.appendChild(titulo);
+
+            const footer = document.createElement('div');
+            footer.className = 'mt-3 flex justify-between items-center pt-3 border-t border-ink-900/10';
+
+            const precio = document.createElement('span');
+            precio.className = `text-sm font-medium ${sinStock ? 'text-ink-500' : 'text-ink-900'}`;
+            precio.style.fontFamily = "'IBM Plex Mono', monospace";
+            precio.innerText = `$${Number(producto.precio || 0).toLocaleString('es-AR')}`;
+            footer.appendChild(precio);
+
+            if (!sinStock) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-agregar-carrito bg-ink-900 hover:bg-clay-600 text-sand-50 h-8 w-8 rounded-full flex items-center justify-center transition-colors shrink-0';
+                btn.dataset.id = producto.id;
+                btn.dataset.nombre = producto.nombre || 'Sin nombre';
+                btn.dataset.precio = producto.precio || 0;
+                btn.dataset.imagen = img.src;
+                btn.dataset.cantidad = '1';
+                btn.setAttribute('aria-label', `Agregar ${producto.nombre || 'producto'} al carrito`);
+                btn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                `;
+                footer.appendChild(btn);
+            }
+
+            card.appendChild(link);
+            card.appendChild(footer);
+
+            return card;
+        }
+
+        // Busca hasta 4 productos: primero de la misma categoría, y si no
+        // alcanzan, completa con otros productos cualquiera. Así la sección
+        // nunca queda vacía ni con una sola tarjeta perdida.
+        async function cargarProductosRelacionados(categoria, idActual) {
+            const seccion = document.getElementById('relacionados-section');
+            const grid = document.getElementById('relacionados-grid');
+            if (!seccion || !grid) return;
+
+            const MAX = 4;
+            let candidatos = [];
+
+            try {
+                if (categoria) {
+                    const qCategoria = query(
+                        collection(db, 'productos'),
+                        where('categoria', '==', categoria),
+                        limit(MAX + 1)
+                    );
+                    const snapCategoria = await getDocs(qCategoria);
+                    candidatos = snapCategoria.docs
+                        .map(d => ({ id: d.id, ...d.data() }))
+                        .filter(p => p.id !== idActual);
+                }
+
+                if (candidatos.length < MAX) {
+                    const qGeneral = query(collection(db, 'productos'), limit(MAX + 6));
+                    const snapGeneral = await getDocs(qGeneral);
+                    const yaIncluidos = new Set([idActual, ...candidatos.map(p => p.id)]);
+                    const extra = snapGeneral.docs
+                        .map(d => ({ id: d.id, ...d.data() }))
+                        .filter(p => !yaIncluidos.has(p.id));
+                    candidatos = candidatos.concat(extra);
+                }
+
+                candidatos = candidatos.slice(0, MAX);
+
+                if (candidatos.length === 0) return; // no hay nada más para mostrar
+
+                grid.innerHTML = '';
+                candidatos.forEach(p => grid.appendChild(crearCardRelacionado(p)));
+
+                if (typeof inicializarBotonesAgregar === 'function') {
+                    inicializarBotonesAgregar();
+                }
+
+                // Primero aparece el título/contenedor de la sección con un fade suave...
+                requestAnimationFrame(() => {
+                    seccion.classList.remove('opacity-0', 'translate-y-6');
+                    seccion.classList.add('opacity-100', 'translate-y-0');
+                });
+
+                // ...y las tarjetas van apareciendo una por una, no todas de golpe.
+                Array.from(grid.children).forEach((card, i) => {
+                    setTimeout(() => {
+                        card.classList.remove('opacity-0', 'translate-y-4');
+                        card.classList.add('opacity-100', 'translate-y-0');
+                    }, 150 + i * 100);
+                });
+            } catch (error) {
+                console.error('Error al cargar productos relacionados:', error);
+                // Fallamos en silencio: la sección se queda oculta, no rompemos la página.
+            }
+        }
+
         async function cargarProducto() {
             if (!productoId) {
                 mostrarError('No se especificó ningún producto en el enlace.');
@@ -297,6 +494,8 @@
                 if (sinStock) aplicarSinStock();
 
                 mostrarContenido();
+
+                cargarProductosRelacionados(data.categoria, PRODUCTO_ACTUAL.id);
             } catch (error) {
                 console.error('Error al cargar el producto:', error);
                 mostrarError('No pudimos cargar este producto. Probá de nuevo más tarde.');
