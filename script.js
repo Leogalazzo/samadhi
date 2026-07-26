@@ -11,11 +11,11 @@ function inicializarNavScroll() {
 
     const actualizarNav = () => {
         if (window.scrollY > 20) {
-            nav.classList.add('bg-white/60', 'shadow-md');
-            nav.classList.remove('bg-white/30', 'shadow-sm');
+            nav.classList.add('bg-sand-50/95', 'shadow-sm');
+            nav.classList.remove('bg-sand-50/80');
         } else {
-            nav.classList.add('bg-white/30', 'shadow-sm');
-            nav.classList.remove('bg-white/60', 'shadow-md');
+            nav.classList.add('bg-sand-50/80');
+            nav.classList.remove('bg-sand-50/95', 'shadow-sm');
         }
     };
 
