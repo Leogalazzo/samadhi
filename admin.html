@@ -45,12 +45,20 @@
 
     <div class="flex min-h-screen">
 
+        <!-- Overlay para cerrar el sidebar tocando afuera (solo mobile/tablet, < lg) -->
+        <div id="admin-sidebar-overlay" class="fixed inset-0 bg-ink-900/40 z-20 hidden lg:hidden"></div>
+
         <!-- ============ SIDEBAR ============ -->
-        <aside class="fixed inset-y-0 left-0 w-64 bg-sand-100/70 backdrop-blur-md border-r border-ink-900/10 flex flex-col z-30">
-            <div class="h-20 flex items-center px-6 border-b border-ink-900/10 shrink-0">
+        <aside id="admin-sidebar" class="fixed inset-y-0 left-0 w-64 bg-sand-100/70 backdrop-blur-md border-r border-ink-900/10 flex flex-col z-30 -translate-x-full transition-transform duration-300 lg:translate-x-0">
+            <div class="h-20 flex items-center justify-between px-6 border-b border-ink-900/10 shrink-0">
                 <a href="index.html" class="flex items-center gap-2">
                     <span class="font-display text-2xl text-ink-900">Samadhi<span class="text-clay-600">.</span></span>
                 </a>
+                <button id="btn-cerrar-sidebar-admin" type="button" class="lg:hidden p-2 -mr-2 hover:bg-ink-900/5 rounded-full transition" aria-label="Cerrar menú">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-ink-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
             <span class="px-6 pt-5 pb-2 font-mono text-[10px] uppercase tracking-widest text-ink-500">Panel</span>
 
@@ -80,7 +88,18 @@
         </aside>
 
         <!-- ============ CONTENIDO ============ -->
-        <div class="flex-1 ml-64 min-w-0">
+        <div class="flex-1 lg:ml-64 min-w-0">
+
+            <!-- Barra superior solo en mobile/tablet (< lg): abre el sidebar -->
+            <div class="lg:hidden sticky top-0 z-10 flex items-center gap-3 h-16 px-4 sm:px-6 bg-sand-50/90 backdrop-blur-md border-b border-ink-900/10">
+                <button id="btn-abrir-sidebar-admin" type="button" class="p-2 -ml-2 hover:bg-ink-900/5 rounded-full transition" aria-label="Abrir menú">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ink-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <span class="font-display text-lg text-ink-900">Samadhi<span class="text-clay-600">.</span></span>
+            </div>
+
             <main class="max-w-6xl mx-auto px-6 sm:px-10 py-10">
 
                 <!-- ================= PANEL: PRODUCTOS ================= -->
